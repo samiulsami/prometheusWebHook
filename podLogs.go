@@ -75,8 +75,12 @@ func getPods(namespace string, config *rest.Config) []v1.Pod {
 	//}
 }
 
+func toPtr(xd int64) *int64 {
+	return &xd
+}
+
 func getPodLogs(pod v1.Pod, config *rest.Config) (string, string) {
-	podLogOpts := v1.PodLogOptions{}
+	podLogOpts := v1.PodLogOptions{TailLines: toPtr(10)}
 	//kubeconfig := flag.String("kubeconfig", "/home/sohan/.kube/config", "location to your kubeconfig file")
 	//config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
 	//if err != nil {
