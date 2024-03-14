@@ -51,7 +51,7 @@ func getPods(namespace string, config *rest.Config) []v1.Pod {
 	// Or specify namespace to get pods in particular namespace
 	pods, err := clientset.CoreV1().Pods(namespace).List(context.Background(), metav1.ListOptions{})
 	if err != nil {
-		panic(err.Error())
+		fmt.Println(err.Error())
 	}
 	fmt.Printf("There are %d pods in the cluster\n", len(pods.Items))
 
