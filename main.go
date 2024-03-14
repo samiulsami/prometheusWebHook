@@ -3,16 +3,20 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/go-chi/chi/v5"
 	"net/http"
 )
 
 func main() {
-	r := chi.NewRouter()
-	r.Post("/webhook", webhookHandler)
-	http.HandleFunc("/webhook", webhookHandler)
-	fmt.Println("Webhook server started, listening on port 8080...")
-	http.ListenAndServe(":8080", nil)
+	tmp := GetPodLogs("default")
+	fmt.Println(len(tmp))
+	for i, _ := range tmp {
+		fmt.Println(tmp[i])
+	}
+	/*	r := chi.NewRouter()
+		r.Post("/webhook", webhookHandler)
+		http.HandleFunc("/webhook", webhookHandler)
+		fmt.Println("Webhook server started, listening on port 8080...")
+		http.ListenAndServe(":8080", nil)*/
 }
 
 func webhookHandler(w http.ResponseWriter, r *http.Request) {
